@@ -9,9 +9,6 @@ import time
 
 app = Flask(__name__)
 
-from sqlhelpers import *
-from forms import *
-
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'roon74'
@@ -19,6 +16,9 @@ app.config['MYSQL_DB'] = 'crypto'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
+
+from sqlhelpers import *
+from forms import *
 
 def is_logged_in(f):
     @wraps(f)
