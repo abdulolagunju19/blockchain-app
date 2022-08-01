@@ -7,10 +7,10 @@ from flask_mysqldb import MySQL
 from functools import wraps
 import time
 
+app = Flask(__name__)
+
 from sqlhelpers import *
 from forms import *
-
-app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
