@@ -18,8 +18,8 @@ app.config['MYSQL_USER'] = os.environ['MYSQL_USER']
 app.config['MYSQL_PASSWORD'] = os.environ['MYSQL_PASSWORD']
 app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
 app.config['MYSQL_CURSORCLASS'] = os.environ['MYSQL_CURSORCLASS']
-
-
+app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ssl-ca": os.environ['MYSQL_ATTR_SSL_CA']}}
+app.config['MYSQL_CHARSET'] = "utf8mb4"
 
 mysql = MySQL(app)
 
