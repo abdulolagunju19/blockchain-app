@@ -145,4 +145,5 @@ def index():
 
 if __name__ == '__main__':
     app.secret_key = os.environ['SECRET_KEY']
-    app.run(debug = True)
+    context = ('MYSQL_ATTR_SSL_CA', os.environ['MYSQL_ATTR_SSL_CA'])
+    app.run(debug = True, ssl_context=context)
