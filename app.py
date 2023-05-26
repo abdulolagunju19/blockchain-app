@@ -140,7 +140,6 @@ def logout():
 
 @app.route("/")
 def index():
-    send_money("BANK", "khart", 100)
     return render_template("index.html")
 
 if __name__ == '__main__':
