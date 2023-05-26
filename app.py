@@ -6,14 +6,18 @@ from passlib.hash import sha256_crypt
 from flask_mysqldb import MySQL
 from functools import wraps
 import time
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'roon74'
-app.config['MYSQL_DB'] = 'crypto'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+load_dotenv()
+
+app.config['MYSQL_HOST'] = os.environ['MYSQL_HOST']
+app.config['MYSQL_USER'] = os.environ['MYSQL_USER']
+app.config['MYSQL_PASSWORD'] = os.environ['MYSQL_PASSWORD']
+app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
+app.config['MYSQL_CURSORCLASS'] = os.environ['MYSQL_CURSORCLASS']
 
 mysql = MySQL(app)
 
@@ -136,11 +140,9 @@ def logout():
 
 @app.route("/")
 def index():
-    send_money("BANK", "johndoe", 100)
-    send_money("BANK", "abdulolagunju19", 10000)
-    send_money("BANK", "bobby", 10000)
+    send_money("BANK", "khart", 100)
     return render_template("index.html")
 
 if __name__ == '__main__':
-    app.secret_key = 'secret123'
+    app.secret_key = os.environ['SECRET_KEY']
     app.run(debug = True)
