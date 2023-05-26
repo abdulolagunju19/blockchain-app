@@ -19,6 +19,7 @@ app.config['MYSQL_PASSWORD'] = os.environ['MYSQL_PASSWORD']
 app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
 app.config['MYSQL_CURSORCLASS'] = os.environ['MYSQL_CURSORCLASS']
 app.config['MYSQL_ATTR_SSL_CA'] = os.environ['MYSQL_ATTR_SSL_CA']
+app.config['MYSQL_DATABASE_URI'] = os.environ['MYSQL_DATABASE_URI']
 
 mysql = MySQL(app)
 
@@ -145,5 +146,4 @@ def index():
 
 if __name__ == '__main__':
     app.secret_key = os.environ['SECRET_KEY']
-    context = ('MYSQL_ATTR_SSL_CA', os.environ['MYSQL_ATTR_SSL_CA'])
-    app.run(debug = True, ssl_context=context)
+    app.run(debug = True)
