@@ -21,6 +21,8 @@ app.config['MYSQL_CURSORCLASS'] = os.environ['MYSQL_CURSORCLASS']
 app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ssl-ca": os.environ['MYSQL_ATTR_SSL_CA']}}
 app.config['MYSQL_CHARSET'] = "utf8mb4"
 
+app.secret_key = os.environ['SECRET_KEY']
+
 mysql = MySQL(app)
 
 from sqlhelpers import *
@@ -145,5 +147,4 @@ def index():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    app.secret_key = os.environ['SECRET_KEY']
     app.run(debug = True)
