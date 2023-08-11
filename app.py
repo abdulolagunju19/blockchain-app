@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# imports
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from passlib.hash import sha256_crypt
 from flask_mysqldb import MySQL
@@ -9,25 +10,27 @@ import time
 from dotenv import load_dotenv
 import os
 
+from sqlhelpers import *
+from forms import *
+
 app = Flask(__name__)
 
 load_dotenv()
 
+# initialize MySQL db
 app.config['MYSQL_HOST'] = os.environ['MYSQL_HOST']
 app.config['MYSQL_USER'] = os.environ['MYSQL_USER']
 app.config['MYSQL_PASSWORD'] = os.environ['MYSQL_PASSWORD']
 app.config['MYSQL_DB'] = os.environ['MYSQL_DB']
 app.config['MYSQL_CURSORCLASS'] = os.environ['MYSQL_CURSORCLASS']
-app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ssl-ca": os.environ['MYSQL_ATTR_SSL_CA']}}
+#app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ssl-ca": os.environ['MYSQL_ATTR_SSL_CA']}}
 app.config['MYSQL_CHARSET'] = "utf8mb4"
 
 app.secret_key = os.environ['SECRET_KEY']
 
 mysql = MySQL(app)
 
-from sqlhelpers import *
-from forms import *
-
+# check if user is logged in, if not, prompt them to log in
 def is_logged_in(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -38,6 +41,7 @@ def is_logged_in(f):
             return redirect(url_for('login'))
     return wrap
 
+# Function to log in a user and set session variables
 def log_in_user(username):
     users = Table("users", "name", "email", "username", "password")
     user = users.getone("username", username)
@@ -47,6 +51,7 @@ def log_in_user(username):
     session['name'] = user.get('name')
     session['email'] = user.get('email')
 
+# Registration route
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
     form = RegisterForm(request.form)
@@ -69,6 +74,7 @@ def register():
 
     return render_template('register.html', form=form)
 
+# Dashboard route with login required
 @app.route("/dashboard")
 @is_logged_in
 def dashboard():
@@ -76,6 +82,7 @@ def dashboard():
     ct = time.strftime("%I:%M %p")
     return render_template("dashboard.html", session=session, ct=ct, blockchain=blockchain, page='dashboard')
 
+# Login route
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -101,6 +108,7 @@ def login():
 
     return render_template("login.html")
 
+# Transaction route with login required
 @app.route("/transaction", methods = ['GET', 'POST'])
 @is_logged_in
 def transaction():
@@ -119,6 +127,7 @@ def transaction():
 
     return render_template("transaction.html", balance=balance, form=form, page='transaction')
 
+# Buy route with login required
 @app.route("/buy", methods = ['GET', 'POST'])
 @is_logged_in
 def buy():
@@ -134,6 +143,7 @@ def buy():
         return redirect(url_for('dashboard'))
     return render_template("buy.html", balance=balance, form=form, page='buy')
 
+# Logout route with login required
 @app.route("/logout")
 @is_logged_in
 def logout():

@@ -963,7 +963,7 @@ label {
   text-transform: uppercase;
   text-decoration: none !important;
   background-color: #fff;
-  color: #00a2b8 !important;
+  color: #00b82b !important;
   border: none;
   border-radius: 2px;
   cursor: pointer;
@@ -1041,8 +1041,8 @@ label {
   left: 0;
   width: 100%;
   height: 500px;
-  background: #0f8a9d;
-  background: linear-gradient(57deg, #00c6a7 0%, #1e4d92 100%);
+  background: #0f9d11;
+  background: linear-gradient(57deg, #00c6a7 0%, #1e9220 100%);
   -webkit-transform-origin: 0;
   transform-origin: 0;
   -webkit-transform: skewY(-12deg);
