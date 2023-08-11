@@ -41,10 +41,6 @@ This site was built using Flask and MySQL.
 
 The Neurocoin System allows users to manage a blockchain-based ledger of transactions for a token system. Users can register, log in, view their account balance, send tokens to other users, and empty their account.
 
-**Here is a simple diagram showing how databases can be connected to a Next.js web app:**
-
-<img width="100%" src="./public/db-nextjs.png" alt="architecture" /> 
-
 ### Features
 - User registration and authentication
 - Account balance management
