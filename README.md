@@ -2,7 +2,7 @@
 
 ## 💡 Motivation 
 
-I was interested in learning about blockchain. I went with building the frontend with Flask. I also wanted to start learning about MySQL, so I chose to integrate it with a MySQL database. I learned a lot about Flask routing, PlanetScale and Render, deploying a Flask application, and using SQL and Python. 
+I was interested in learning about blockchain. I went with building the frontend with Flask. I also wanted to start learning about MySQL, so I chose to integrate it with a MySQL database. I learned a lot about Flask routing, PlanetScale and Render, deploying a Flask application, and using SQL and Python. This tutorial by Will Assad was amazing for this project: [Blockchain App Will Assad](https://www.youtube.com/watch?v=b41TVaLwhKc&list=PLtCKS3CuBDYV_Vyl1ZH2Je8gSdXfQf4e3)
 
 Feel free to [reach out](https://abneuro.vercel.app/contact) to me if you have any additional questions. There are lots of features that still need to be implemented!
 
